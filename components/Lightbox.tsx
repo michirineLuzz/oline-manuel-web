@@ -40,14 +40,14 @@ const Lightbox: React.FC<LightboxProps> = ({ images, currentIndex, onClose, onNe
         </button>
       </div>
       <button
-        onClick={onPrev}
+        onClick={(e) => { e.stopPropagation(); onPrev(); }}
         className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-3 text-text-dark transition"
         aria-label="Previous image"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
       </button>
       <button
-        onClick={onNext}
+        onClick={(e) => { e.stopPropagation(); onNext(); }}
         className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-3 text-text-dark transition"
         aria-label="Next image"
       >
