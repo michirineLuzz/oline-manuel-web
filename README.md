@@ -145,7 +145,3 @@ Lihat section "Troubleshooting" di [SETUP_SUPABASE.md](SETUP_SUPABASE.md)
 ## 📄 License
 
 © 2025 Oline Manuel Official Website. All rights reserved.
-
----
-
-**Original AI Studio App**: https://ai.studio/apps/drive/1HCWEy-eP43cpEKM-BkgrPFztkgQjxl5I
