@@ -49,18 +49,18 @@ export const PROFILE_DATA = {
 };
 
 export const GALLERY_IMAGES: GalleryImage[] = [
-    { id: 1, src: 'https://pbs.twimg.com/media/GVbaRAYaAAA3pZu?format=jpg&name=orig', thumbnail: 'https://pbs.twimg.com/media/GVbaRAYaAAA3pZu?format=jpg&name=orig', category: 'performance', caption: 'Ama Nojaku Batta', width: 800, height: 1200 },
-    { id: 2, src: 'https://pbs.twimg.com/media/Gtam9DLboAAfrxs?format=jpg&name=orig', thumbnail: 'https://pbs.twimg.com/media/Gtam9DLboAAfrxs?format=jpg&name=orig', category: 'performance', caption: 'Theater Performance', width: 1200, height: 800 },
-    { id: 3, src: 'https://pbs.twimg.com/media/G2wORqQaAAUwjJu?format=jpg&name=orig', thumbnail: 'https://pbs.twimg.com/media/G2wORqQaAAUwjJu?format=jpg&name=orig', category: 'RabOline', caption: '#RabOline', width: 800, height: 1000 },
-    { id: 4, src: 'https://pbs.twimg.com/media/G2LhrBIawAAqgR1?format=jpg&name=orig', thumbnail: 'https://pbs.twimg.com/media/G2LhrBIawAAqgR1?format=jpg&name=orig', category: 'RabOline', caption: '#RabOline', width: 1200, height: 800 },
-    { id: 5, src: 'https://pbs.twimg.com/media/G2LhrB7aIAIDaaB?format=jpg&name=orig', thumbnail: 'https://pbs.twimg.com/media/G2LhrB7aIAIDaaB?format=jpg&name=orig', category: 'RabOline', caption: '#RabOline', width: 800, height: 1200 },
-    { id: 6, src: 'https://pbs.twimg.com/media/Gfp3SpDaIAEipk7?format=jpg&name=orig', thumbnail: 'https://pbs.twimg.com/media/Gfp3SpDaIAEipk7?format=jpg&name=orig', category: 'RabOline', caption: '#RabOline', width: 800, height: 1000 },
-    { id: 7, src: 'https://pbs.twimg.com/media/GbIYf-pakAECGi7?format=jpg&name=orig', thumbnail: 'https://pbs.twimg.com/media/GbIYf-pakAECGi7?format=jpg&name=orig', category: 'RabOline', caption: '#RabOline', width: 1200, height: 800 },
-    { id: 8, src: 'https://pbs.twimg.com/media/G3Y5Mria4AA73QF?format=jpg&name=orig', thumbnail: 'https://pbs.twimg.com/media/G3Y5Mria4AA73QF?format=jpg&name=orig', category: 'RabOline', caption: 'Vc Events', width: 800, height: 1200 },
-    { id: 9, src: 'https://pbs.twimg.com/media/GykQPnmb0AAQeF6?format=jpg&name=orig', thumbnail: 'https://pbs.twimg.com/media/GykQPnmb0AAQeF6?format=jpg&name=orig', category: 'performance', caption: 'Konser Kemerdekaan', width: 800, height: 1000 },
-    { id: 10, src: 'https://pbs.twimg.com/media/G3Etaa3awAECGv8?format=jpg&name=orig', thumbnail: 'https://pbs.twimg.com/media/G3Etaa3awAECGv8?format=jpg&name=orig', category:'performance', caption: '', width: 1200, height: 800 },
-    { id: 12, src: 'https://pbs.twimg.com/media/G4MrQHcWMAAOT5J?format=jpg&name=orig', thumbnail: 'https://pbs.twimg.com/media/G4MrQHcWMAAOT5J?format=jpg&name=orig', category: 'photoshoot', caption: '', width: 1200, height: 800 },
-    { id: 13, src: 'https://pbs.twimg.com/media/GvG_2PGaAAAxW8h?format=jpg&name=orig', thumbnail: 'https://pbs.twimg.com/media/GvG_2PGaAAAxW8h?format=jpg&name=orig', category: 'performance', caption: '', width:800, height: 1000 },
+    { id: 1, url: 'https://pbs.twimg.com/media/GVbaRAYaAAA3pZu?format=jpg&name=orig', thumbnail_url: 'https://pbs.twimg.com/media/GVbaRAYaAAA3pZu?format=jpg&name=orig', category: 'performance', caption: 'Ama Nojaku Batta', width: 800, height: 1200 },
+    { id: 2, url: 'https://pbs.twimg.com/media/Gtam9DLboAAfrxs?format=jpg&name=orig', thumbnail_url: 'https://pbs.twimg.com/media/Gtam9DLboAAfrxs?format=jpg&name=orig', category: 'performance', caption: 'Theater Performance', width: 1200, height: 800 },
+    { id: 3, url: 'https://pbs.twimg.com/media/G2wORqQaAAUwjJu?format=jpg&name=orig', thumbnail_url: 'https://pbs.twimg.com/media/G2wORqQaAAUwjJu?format=jpg&name=orig', category: 'RabOline', caption: '#RabOline', width: 800, height: 1000 },
+    { id: 4, url: 'https://pbs.twimg.com/media/G2LhrBIawAAqgR1?format=jpg&name=orig', thumbnail_url: 'https://pbs.twimg.com/media/G2LhrBIawAAqgR1?format=jpg&name=orig', category: 'RabOline', caption: '#RabOline', width: 1200, height: 800 },
+    { id: 5, url: 'https://pbs.twimg.com/media/G2LhrB7aIAIDaaB?format=jpg&name=orig', thumbnail_url: 'https://pbs.twimg.com/media/G2LhrB7aIAIDaaB?format=jpg&name=orig', category: 'RabOline', caption: '#RabOline', width: 800, height: 1200 },
+    { id: 6, url: 'https://pbs.twimg.com/media/Gfp3SpDaIAEipk7?format=jpg&name=orig', thumbnail_url: 'https://pbs.twimg.com/media/Gfp3SpDaIAEipk7?format=jpg&name=orig', category: 'RabOline', caption: '#RabOline', width: 800, height: 1000 },
+    { id: 7, url: 'https://pbs.twimg.com/media/GbIYf-pakAECGi7?format=jpg&name=orig', thumbnail_url: 'https://pbs.twimg.com/media/GbIYf-pakAECGi7?format=jpg&name=orig', category: 'RabOline', caption: '#RabOline', width: 1200, height: 800 },
+    { id: 8, url: 'https://pbs.twimg.com/media/G3Y5Mria4AA73QF?format=jpg&name=orig', thumbnail_url: 'https://pbs.twimg.com/media/G3Y5Mria4AA73QF?format=jpg&name=orig', category: 'RabOline', caption: 'Vc Events', width: 800, height: 1200 },
+    { id: 9, url: 'https://pbs.twimg.com/media/GykQPnmb0AAQeF6?format=jpg&name=orig', thumbnail_url: 'https://pbs.twimg.com/media/GykQPnmb0AAQeF6?format=jpg&name=orig', category: 'performance', caption: 'Konser Kemerdekaan', width: 800, height: 1000 },
+    { id: 10, url: 'https://pbs.twimg.com/media/G3Etaa3awAECGv8?format=jpg&name=orig', thumbnail_url: 'https://pbs.twimg.com/media/G3Etaa3awAECGv8?format=jpg&name=orig', category:'performance', caption: '', width: 1200, height: 800 },
+    { id: 12, url: 'https://pbs.twimg.com/media/G4MrQHcWMAAOT5J?format=jpg&name=orig', thumbnail_url: 'https://pbs.twimg.com/media/G4MrQHcWMAAOT5J?format=jpg&name=orig', category: 'photoshoot', caption: '', width: 1200, height: 800 },
+    { id: 13, url: 'https://pbs.twimg.com/media/GvG_2PGaAAAxW8h?format=jpg&name=orig', thumbnail_url: 'https://pbs.twimg.com/media/GvG_2PGaAAAxW8h?format=jpg&name=orig', category: 'performance', caption: '', width:800, height: 1000 },
 
 ];
 

@@ -2,8 +2,8 @@ export type Page = 'Home' | 'Profile' | 'Gallery' | 'Events' | 'Media' | 'AdminL
 
 export interface GalleryImage {
   id: number;
-  src: string;
-  thumbnail: string;
+  url: string;
+  thumbnail_url: string;
   category: 'performance' | 'photoshoot' | 'RabOline';
   caption: string;
   width: number;

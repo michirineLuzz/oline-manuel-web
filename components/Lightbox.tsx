@@ -29,7 +29,7 @@ const Lightbox: React.FC<LightboxProps> = ({ images, currentIndex, onClose, onNe
   return (
     <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4" onClick={onClose}>
       <div className="relative max-w-4xl max-h-full" onClick={(e) => e.stopPropagation()}>
-        <img src={image.src} alt={image.caption} className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" />
+        <img src={image.url} alt={image.caption} className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl" />
         <p className="text-white text-center mt-2 text-sm italic">{image.caption}</p>
         <button
           onClick={onClose}
