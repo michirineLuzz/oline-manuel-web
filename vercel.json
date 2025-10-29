@@ -11,6 +11,11 @@
       "dest": "/robots.txt"
     },
     {
+      "src": "/og-image.jpg",
+      "headers": { "content-type": "image/jpeg" },
+      "dest": "/og-image.jpg"
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
