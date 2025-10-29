@@ -6,4 +6,4 @@ Allow: /
 Disallow: /#admin
 
 # Sitemap location
-Sitemap: oline-manuel-web.vercel.app/sitemap.xml
+Sitemap: https://oline-manuel-web.vercel.app/sitemap.xml
