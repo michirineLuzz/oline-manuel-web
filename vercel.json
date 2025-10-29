@@ -2,18 +2,19 @@
   "routes": [
     {
       "src": "/sitemap.xml",
-      "headers": { "content-type": "application/xml" },
       "dest": "/sitemap.xml"
     },
     {
       "src": "/robots.txt",
-      "headers": { "content-type": "text/plain" },
       "dest": "/robots.txt"
     },
     {
       "src": "/og-image.jpg",
-      "headers": { "content-type": "image/jpeg" },
       "dest": "/og-image.jpg"
+    },
+    {
+      "src": "/favicon.svg",
+      "dest": "/favicon.svg"
     },
     {
       "src": "/(.*)",
