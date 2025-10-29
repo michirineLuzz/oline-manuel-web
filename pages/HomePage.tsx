@@ -3,18 +3,26 @@ import { Link } from 'react-router-dom';
 import { useProfile, useEvents, useVideos } from '../hooks/useSupabaseData';
 
 const HomePage: React.FC = () => {
-  const { profile, loading: profileLoading } = useProfile();
-  const { events, loading: eventsLoading } = useEvents();
-  const { videos, loading: videosLoading } = useVideos();
+  const { profile, loading: profileLoading, error: profileError } = useProfile();
+  const { events, loading: eventsLoading, error: eventsError } = useEvents();
+  const { videos, loading: videosLoading, error: videosError } = useVideos();
 
   const loading = profileLoading || eventsLoading || videosLoading;
+  const hasError = profileError || eventsError || videosError;
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-2xl text-gray-600">Loading...</div>
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-pastel-pink border-t-transparent rounded-full animate-spin"></div>
+          <div className="text-xl text-gray-600">Loading...</div>
+        </div>
       </div>
     );
+  }
+
+  if (hasError) {
+    console.error('Data fetch errors:', { profileError, eventsError, videosError });
   }
 
   const sortedEvents = events.slice().sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
