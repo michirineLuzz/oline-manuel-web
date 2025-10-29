@@ -1,12 +1,8 @@
 import React from 'react';
-import { Page } from '../types';
+import { Link } from 'react-router-dom';
 import { useProfile, useEvents, useVideos } from '../hooks/useSupabaseData';
 
-interface HomePageProps {
-  setCurrentPage: (page: Page) => void;
-}
-
-const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
+const HomePage: React.FC = () => {
   const { profile, loading: profileLoading } = useProfile();
   const { events, loading: eventsLoading } = useEvents();
   const { videos, loading: videosLoading } = useVideos();
@@ -101,9 +97,9 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-                <button
-                  onClick={() => setCurrentPage('Profile')}
-                  className="group relative px-8 py-4 bg-gradient-to-r from-pastel-pink via-lavender to-pastel-blue text-white font-bold rounded-2xl shadow-2xl hover:shadow-pastel-pink/50 overflow-hidden transition-all duration-500"
+                <Link
+                  to="/profile"
+                  className="group relative px-8 py-4 bg-gradient-to-r from-pastel-pink via-lavender to-pastel-blue text-white font-bold rounded-2xl shadow-2xl hover:shadow-pastel-pink/50 overflow-hidden transition-all duration-500 text-center"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     Explore Profile
@@ -112,16 +108,16 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
                     </svg>
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-lavender via-pastel-blue to-pastel-pink opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </button>
-                <button
-                  onClick={() => setCurrentPage('Media')}
+                </Link>
+                <Link
+                  to="/media"
                   className="group px-8 py-4 bg-white/80 backdrop-blur-md text-gray-700 font-bold rounded-2xl border-2 border-lavender/20 hover:border-lavender hover:bg-white transition-all duration-300 flex items-center justify-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z"/>
                   </svg>
                   Watch Media
-                </button>
+                </Link>
               </div>
             </div>
 
@@ -216,15 +212,15 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
               </p>
               
               {/* Button */}
-              <button
-                onClick={() => setCurrentPage('Profile')}
+              <Link
+                to="/profile"
                 className="group/btn inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pastel-pink to-lavender text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
               >
                 View Profile
                 <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </button>
+              </Link>
 
               {/* Decorative corner */}
               <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-pastel-pink/20 rounded-tr-lg group-hover:border-pastel-pink/50 transition-colors"></div>
@@ -249,15 +245,15 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
               </p>
               
               {/* Button */}
-              <button
-                onClick={() => setCurrentPage('Events')}
+              <Link
+                to="/events"
                 className="group/btn inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pastel-blue to-lavender text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
               >
                 View Schedule
                 <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </button>
+              </Link>
 
               {/* Decorative corner */}
               <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-pastel-blue/20 rounded-tr-lg group-hover:border-pastel-blue/50 transition-colors"></div>
@@ -279,15 +275,15 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
               </p>
               
               {/* Button */}
-              <button
-                onClick={() => setCurrentPage('Media')}
+              <Link
+                to="/media"
                 className="group/btn inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-lavender to-pastel-pink text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300"
               >
                 Watch Now
                 <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </button>
+              </Link>
 
               {/* Decorative corner */}
               <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-lavender/20 rounded-tr-lg group-hover:border-lavender/50 transition-colors"></div>
@@ -307,15 +303,15 @@ const HomePage: React.FC<HomePageProps> = ({ setCurrentPage }) => {
                 Browse through stunning collection of Oline Photos
                   </p>
                   <div className="mt-6"></div>
-                  <button
-                    onClick={() => setCurrentPage('Gallery')}
+                  <Link
+                    to="/gallery"
                     className="group/btn inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-pastel-pink via-lavender to-pastel-blue text-white font-bold rounded-2xl hover:shadow-xl transition-all duration-300"
                   >
                     View Gallery
                     <svg className="w-8 h-8 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
-                  </button>
+                  </Link>
                 </div>
                 <div className="flex-shrink-0">
                   <div className="grid grid-cols-2 gap-4">

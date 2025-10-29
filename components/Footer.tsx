@@ -1,14 +1,16 @@
 import React from 'react';
-import { Page } from '../types';
+import { Link } from 'react-router-dom';
 import InstagramIcon from './icons/InstagramIcon';
 import TwitterIcon from './icons/TwitterIcon';
 
-interface FooterProps {
-  setCurrentPage: (page: Page) => void;
-}
-
-const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
-    const navItems: Page[] = ['Home', 'Profile', 'Gallery', 'Media', 'Events'];
+const Footer: React.FC = () => {
+    const navItems = [
+        { path: '/', label: 'Home' },
+        { path: '/profile', label: 'Profile' },
+        { path: '/gallery', label: 'Gallery' },
+        { path: '/media', label: 'Media' },
+        { path: '/events', label: 'Events' },
+    ];
     const socialLinks = [
         { icon: <InstagramIcon />, href: 'http://instagram.com/jkt48.oline', name: 'Instagram', isComponent: true },
         { icon: <TwitterIcon />, href: 'https://x.com/M_OlineJKT48', name: 'Twitter/X', isComponent: true },
@@ -21,22 +23,22 @@ const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center md:text-left">
             <div className="sm:col-span-2 md:col-span-1">
-                 <a onClick={() => setCurrentPage('Home')} className="cursor-pointer text-2xl font-bold font-heading text-text-dark tracking-wider inline-block mb-4">
+                 <Link to="/" className="text-2xl font-bold font-heading text-text-dark tracking-wider inline-block mb-4">
                     Oline Manuel
-                </a>
+                </Link>
                 <p className="text-sm text-gray-500">&copy; {new Date().getFullYear()} Made by Rizz With ❤️</p>
             </div>
             <div>
                 <h3 className="font-semibold font-heading tracking-wide mb-4">Quick Links</h3>
                 <ul className="space-y-2">
                     {navItems.map(item => (
-                        <li key={item}>
-                             <a
-                                onClick={(e) => { e.preventDefault(); setCurrentPage(item); }}
-                                className="text-sm text-gray-600 hover:text-pastel-pink transition-colors duration-300 cursor-pointer"
+                        <li key={item.path}>
+                             <Link
+                                to={item.path}
+                                className="text-sm text-gray-600 hover:text-pastel-pink transition-colors duration-300"
                             >
-                                {item}
-                            </a>
+                                {item.label}
+                            </Link>
                         </li>
                     ))}
                 </ul>

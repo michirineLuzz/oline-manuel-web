@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
@@ -9,12 +10,21 @@ import EventsPage from './pages/EventsPage';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import { supabase } from './lib/supabase';
-import { Page } from './types';
 
-const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<Page>('Home');
-  const [isAnimating, setIsAnimating] = useState(false);
+const ScrollToTop: React.FC = () => {
+  const location = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  
+  return null;
+};
+
+const AppContent: React.FC = () => {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const location = useLocation();
 
   // Check if user is already logged in
   useEffect(() => {
@@ -25,97 +35,62 @@ const App: React.FC = () => {
     });
   }, []);
 
-  // Handle hash-based routing for /admin
-  useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.slice(1); // Remove '#' prefix
-      if (hash === 'admin') {
-        setCurrentPage(isAdmin ? 'AdminDashboard' : 'AdminLogin');
-      }
-    };
-
-    // Check on mount
-    handleHashChange();
-
-    // Listen for hash changes
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [isAdmin]);
-
+  // Animation on route change
   useEffect(() => {
     setIsAnimating(true);
     const timer = setTimeout(() => setIsAnimating(false), 300);
-    window.scrollTo(0, 0);
     return () => clearTimeout(timer);
-  }, [currentPage]);
-
-  const handleSetPage = (page: Page) => {
-    setCurrentPage(page);
-    // Update hash for admin pages
-    if (page === 'AdminLogin' || page === 'AdminDashboard') {
-      window.location.hash = 'admin';
-    } else {
-      // Clear hash for non-admin pages
-      if (window.location.hash === '#admin') {
-        window.history.replaceState(null, '', window.location.pathname);
-      }
-    }
-  };
+  }, [location]);
 
   const handleLoginSuccess = () => {
     setIsAdmin(true);
-    setCurrentPage('Home');
   };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setIsAdmin(false);
-    setCurrentPage('Home');
-  };
-
-
-
-  const renderPage = () => {
-    if (currentPage === 'AdminLogin') {
-      return <AdminLogin onLoginSuccess={handleLoginSuccess} />;
-    }
-    
-    if (currentPage === 'AdminDashboard') {
-      if (!isAdmin) {
-        return <AdminLogin onLoginSuccess={handleLoginSuccess} />;
-      }
-      return <AdminDashboard onLogout={handleLogout} />;
-    }
-
-    switch (currentPage) {
-      case 'Profile':
-        return <ProfilePage />;
-      case 'Gallery':
-        return <GalleryPage />;
-      case 'Media':
-        return <MediaPage />;
-      case 'Events':
-        return <EventsPage />;
-      default:
-        return <HomePage setCurrentPage={handleSetPage} />;
-    }
   };
 
   return (
     <div className="bg-white font-body text-text-dark min-h-screen flex flex-col">
+      <ScrollToTop />
       <Header 
-        currentPage={currentPage} 
-        setCurrentPage={handleSetPage} 
         isAdmin={isAdmin} 
         onLogout={handleLogout} 
       />
       <main className="flex-grow">
-         <div className={`transition-opacity duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
-            {renderPage()}
+        <div className={`transition-opacity duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/gallery" element={<GalleryPage />} />
+            <Route path="/media" element={<MediaPage />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route 
+              path="/admin" 
+              element={
+                isAdmin ? (
+                  <AdminDashboard onLogout={handleLogout} />
+                ) : (
+                  <AdminLogin onLoginSuccess={handleLoginSuccess} />
+                )
+              } 
+            />
+            {/* Redirect any unknown routes to home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
         </div>
       </main>
-      <Footer setCurrentPage={handleSetPage} />
+      <Footer />
     </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 };
 

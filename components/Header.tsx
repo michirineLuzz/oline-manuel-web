@@ -1,59 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { Page } from '../types';
+import { Link, useLocation } from 'react-router-dom';
 import AnimatedMenuIcon from './icons/AnimatedMenuIcon';
 
 interface HeaderProps {
-  currentPage: Page;
-  setCurrentPage: (page: Page) => void;
   isAdmin: boolean;
   onLogout: () => void;
 }
 
-const NavLink: React.FC<{ page?: Page; currentPage?: Page; setCurrentPage?: (page: Page) => void; onClick?: () => void; children: React.ReactNode; isMobile?: boolean; icon?: string }> = ({ page, currentPage, setCurrentPage, onClick, children, isMobile, icon }) => {
-  const isActive = currentPage === page;
-  const baseClasses = 'cursor-pointer transition-colors duration-300 font-medium';
+const NavLink: React.FC<{ to?: string; onClick?: () => void; children: React.ReactNode; isMobile?: boolean; icon?: string }> = ({ to, onClick, children, isMobile, icon }) => {
+  const location = useLocation();
+  const isActive = to ? location.pathname === to : false;
+  const baseClasses = 'transition-colors duration-300 font-medium';
   const mobileClasses = 'block py-4 text-lg flex items-center gap-3';
   const desktopClasses = 'py-2';
   const activeClasses = 'text-pastel-pink';
   const inactiveClasses = 'hover:text-pastel-pink';
 
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (onClick) {
-      onClick();
-    } else if (page && setCurrentPage) {
-      setCurrentPage(page);
-    }
-  };
+  if (onClick) {
+    return (
+      <button
+        onClick={onClick}
+        className={`${baseClasses} ${isMobile ? mobileClasses : desktopClasses} ${inactiveClasses}`}
+      >
+        {isMobile && icon && <span className="text-2xl">{icon}</span>}
+        {children}
+      </button>
+    );
+  }
 
   return (
-    <a
-      onClick={handleClick}
+    <Link
+      to={to || '/'}
       className={`${baseClasses} ${isMobile ? mobileClasses : desktopClasses} ${isActive ? activeClasses : inactiveClasses}`}
     >
       {isMobile && icon && <span className="text-2xl">{icon}</span>}
       {children}
-    </a>
+    </Link>
   );
 };
 
-const Header: React.FC<HeaderProps> = ({ currentPage, setCurrentPage, isAdmin, onLogout }) => {
+const Header: React.FC<HeaderProps> = ({ isAdmin, onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const baseNavItems: Page[] = ['Home', 'Profile', 'Gallery', 'Media', 'Events'];
-  // Only show AdminDashboard in menu if user is logged in
-  const navItems: Page[] = isAdmin ? [...baseNavItems, 'AdminDashboard'] : baseNavItems;
-  
-  const menuIcons: Record<Page, string> = {
-    'Home': '🏠',
-    'Profile': '👤',
-    'Gallery': '📷',
-    'Media': '🎬',
-    'Events': '🎉',
-    'AdminDashboard': '⚙️',
-    'AdminLogin': '🔐'
-  };
+  const navItems = [
+    { path: '/', label: 'Home', icon: '🏠' },
+    { path: '/profile', label: 'Profile', icon: '👤' },
+    { path: '/gallery', label: 'Gallery', icon: '📷' },
+    { path: '/media', label: 'Media', icon: '🎬' },
+    { path: '/events', label: 'Events', icon: '🎉' },
+  ];
+
+  const adminNavItem = { path: '/admin', label: 'Admin', icon: '⚙️' };
+  const allNavItems = isAdmin ? [...navItems, adminNavItem] : navItems;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,9 +62,11 @@ const Header: React.FC<HeaderProps> = ({ currentPage, setCurrentPage, isAdmin, o
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
+  const location = useLocation();
+  
   useEffect(() => {
     setIsOpen(false);
-  }, [currentPage]);
+  }, [location]);
 
   useEffect(() => {
     if (isOpen) {
@@ -84,13 +85,13 @@ const Header: React.FC<HeaderProps> = ({ currentPage, setCurrentPage, isAdmin, o
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0">
-             <a onClick={() => setCurrentPage('Home')} className="cursor-pointer text-2xl font-bold font-heading text-text-dark tracking-wider">
+             <Link to="/" className="text-2xl font-bold font-heading text-text-dark tracking-wider">
                 Oline Manuel
-            </a>
+            </Link>
           </div>
           <nav className="hidden md:flex items-center md:space-x-8">
-            {navItems.map((item) => (
-              <NavLink key={item} page={item} currentPage={currentPage} setCurrentPage={setCurrentPage}>{item === 'AdminDashboard' ? 'Admin' : item}</NavLink>
+            {allNavItems.map((item) => (
+              <NavLink key={item.path} to={item.path}>{item.label}</NavLink>
             ))}
             {isAdmin && <NavLink onClick={onLogout}>Logout</NavLink>}
           </nav>
@@ -119,8 +120,8 @@ const Header: React.FC<HeaderProps> = ({ currentPage, setCurrentPage, isAdmin, o
               </button>
           </div>
           <nav className="flex flex-col items-start px-8 mt-12 space-y-2">
-              {navItems.map((item) => (
-                <NavLink key={item} page={item} currentPage={currentPage} setCurrentPage={setCurrentPage} isMobile icon={menuIcons[item]}>{item === 'AdminDashboard' ? 'Admin' : item}</NavLink>
+              {allNavItems.map((item) => (
+                <NavLink key={item.path} to={item.path} isMobile icon={item.icon}>{item.label}</NavLink>
               ))}
                {isAdmin && <NavLink onClick={onLogout} isMobile icon="🚪">Logout</NavLink>}
           </nav>
