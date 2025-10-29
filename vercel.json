@@ -1,8 +1,18 @@
 {
-  "rewrites": [
+  "routes": [
     {
-      "source": "/:path((?!sitemap\\.xml|robots\\.txt).*)",
-      "destination": "/index.html"
+      "src": "/sitemap.xml",
+      "headers": { "content-type": "application/xml" },
+      "dest": "/sitemap.xml"
+    },
+    {
+      "src": "/robots.txt",
+      "headers": { "content-type": "text/plain" },
+      "dest": "/robots.txt"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
