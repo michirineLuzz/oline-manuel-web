@@ -143,5 +143,3 @@ Visit: `http://localhost:5173`
 Lihat section "Troubleshooting" di [SETUP_SUPABASE.md](SETUP_SUPABASE.md)
 
 ## 📄 License
-
-© 2025 Oline Manuel Official Website. All rights reserved.
