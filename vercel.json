@@ -9,6 +9,10 @@
       "dest": "/robots.txt"
     },
     {
+      "src": "/og-image.jpg",
+      "dest": "/og-image.jpg"
+    },
+    {
       "src": "/favicon.svg",
       "dest": "/favicon.svg"
     },
